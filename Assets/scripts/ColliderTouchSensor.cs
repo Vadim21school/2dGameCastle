@@ -9,7 +9,7 @@ public class ColliderTouchSensor : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.TryGetComponent<PlayerController>(out PlayerController player))
+        if (collision.TryGetComponent<MoveHorizontalPlayer>(out MoveHorizontalPlayer player))
         {
             _flash.SetActive(true);
             _touched.Invoke();
@@ -18,7 +18,7 @@ public class ColliderTouchSensor : MonoBehaviour
 
     private void OnTriggerExit2D(Collider2D collision)
     {
-        if (collision.TryGetComponent<PlayerController>(out PlayerController player))
+        if (collision.TryGetComponent<MoveHorizontalPlayer>(out MoveHorizontalPlayer player))
         {
             _exit.Invoke();
         }

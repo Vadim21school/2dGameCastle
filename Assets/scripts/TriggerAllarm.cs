@@ -1,16 +1,12 @@
 using System.Collections;
 using UnityEngine;
 
-public class AlarmSoundContoller : MonoBehaviour
+[RequireComponent(typeof(AudioSource))]
+public class TriggerAllarm : MonoBehaviour
 {
     private AudioSource _alarmSound;
     private float _fadeTime = 2f;
-    private Coroutine changeSound;
-
-    void Start()
-    {
-        _alarmSound = GetComponent<AudioSource>();
-    }
+    private Coroutine _changeSound;
 
     private IEnumerator StartFade(float targetVolume)
     {
@@ -30,11 +26,11 @@ public class AlarmSoundContoller : MonoBehaviour
 
     public void PlaySound(float strengthSound)
     {
-        if(changeSound != null)
+        if(_changeSound != null)
         {
-            StopCoroutine(changeSound);
+            StopCoroutine(_changeSound);
         }
 
-        changeSound = StartCoroutine(StartFade(strengthSound));
+        _changeSound = StartCoroutine(StartFade(strengthSound));
     }
 }
